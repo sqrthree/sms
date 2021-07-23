@@ -11,6 +11,12 @@
     "lint": "npm run type-check",
     "prepublishOnly": "npm run build"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sqrthree/sms.git"
