@@ -5,7 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc"
+    "prebuild": "npm run lint",
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "lint": "npm run type-check",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
