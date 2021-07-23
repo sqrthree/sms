@@ -13,7 +13,10 @@ npm install @sqrtthree/sms
 ```ts
 import smsService from '@sqrtthree/sms'
 
-const sms = smsService('id', 'key', 'sign name')
+const sms = smsService('id', 'key', 'sign name', {
+  debug: true,
+  mock: true,
+})
 
 sms.sendSms(templateCode: string, phoneNumbers: string | string[], templateParams?: Record<string, string | number>, options?: Record<string, string>)
 
