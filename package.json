@@ -1,0 +1,30 @@
+{
+  "name": "sms",
+  "description": "Ali Cloud sms api for Node.js",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sqrthree/sms.git"
+  },
+  "keywords": [],
+  "author": "sqrtthree <imsqrtthree@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sqrthree/sms/issues"
+  },
+  "homepage": "https://github.com/sqrthree/sms#readme",
+  "dependencies": {
+    "crypto-random-string": "~3.3.1",
+    "got": "~11.8.2",
+    "lodash": "~4.17.21"
+  },
+  "devDependencies": {
+    "@sqrtthree/tsconfig": "~1.0.0",
+    "typescript": "~4.3.5"
+  }
+}

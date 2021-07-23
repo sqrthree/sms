@@ -1,0 +1,9 @@
+{
+  "extends": "@sqrtthree/tsconfig",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
