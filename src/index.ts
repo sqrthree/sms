@@ -110,20 +110,23 @@ class SmsService {
     return this.request('SendSms', payload)
   }
 
-  async sendBatchSms(templateCode: string, phoneNumbers: string[])
+  async sendBatchSms(
+    templateCode: string,
+    phoneNumbers: string[]
+  ): Promise<void>
 
   async sendBatchSms(
     templateCode: string,
     phoneNumbers: string[],
     templateParams: SmsParams[]
-  )
+  ): Promise<void>
 
   async sendBatchSms(
     templateCode: string,
     phoneNumbers: string[],
     templateParams?: SmsParams[],
     options?: SendBatchSmsOptions
-  ) {
+  ): Promise<void> {
     const { signName } = this.config
     const phones = JSON.stringify(phoneNumbers)
     const signNameList = JSON.stringify(
