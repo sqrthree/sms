@@ -1,5 +1,5 @@
 {
-  "name": "sms",
+  "name": "@sqrtthree/sms",
   "description": "Ali Cloud sms api for Node.js",
   "version": "0.1.0",
   "main": "dist/index.js",
