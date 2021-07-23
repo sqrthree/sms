@@ -62,6 +62,7 @@ interface SendBatchSmsOptions {
 
 class SmsService {
   config: Config
+
   options: ServiceOptions
 
   constructor(

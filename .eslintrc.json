@@ -11,6 +11,7 @@
     "node": true
   },
   "rules": {
+    "no-console": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "import/extensions": [
       "error",
