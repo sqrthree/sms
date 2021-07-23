@@ -18,6 +18,10 @@ interface Config {
   signName: string
 }
 
+interface ServiceOptions {
+  debug: boolean
+}
+
 type RequestAction = 'SendSms' | 'SendBatchSms'
 
 interface RequestBaseOptions {
@@ -57,8 +61,14 @@ interface SendBatchSmsOptions {
 
 class SmsService {
   config: Config
+  options: ServiceOptions
 
-  constructor(accessKeyID: string, accessKeySecret: string, signName: string) {
+  constructor(
+    accessKeyID: string,
+    accessKeySecret: string,
+    signName: string,
+    options?: Partial<ServiceOptions>
+  ) {
     this.config = {
       accessKeyID,
       accessKeySecret,
@@ -66,6 +76,10 @@ class SmsService {
       apiVersion: '2017-05-25',
       signName,
     }
+
+    this.options = _.defaults(options, {
+      debug: false,
+    })
   }
 
   async sendSms(
@@ -173,12 +187,28 @@ class SmsService {
     let response: BaseResponse
 
     try {
+      if (this.options.debug) {
+        console.log('Send api request to ali cloud service.', {
+          method: 'GET',
+          endpoint,
+          query: payload,
+        })
+      }
+
       response = await got.get<BaseResponse>(endpoint, {
         searchParams: payload,
         responseType: 'json',
         resolveBodyOnly: true,
       })
+
+      if (this.options.debug) {
+        console.log('Received response from ali cloud service.', response)
+      }
     } catch (err) {
+      if (this.options.debug) {
+        console.error('Received error response from ali cloud service.', err)
+      }
+
       if (err.response) {
         const { statusCode, body } = err.response
         const error = {
@@ -240,7 +270,8 @@ class SmsService {
 export default function sms(
   accessKeyID: string,
   accessKeySecret: string,
-  signName: string
+  signName: string,
+  options?: Partial<ServiceOptions>
 ): SmsService {
-  return new SmsService(accessKeyID, accessKeySecret, signName)
+  return new SmsService(accessKeyID, accessKeySecret, signName, options)
 }
