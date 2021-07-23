@@ -20,6 +20,7 @@ interface Config {
 
 interface ServiceOptions {
   debug: boolean
+  mock: boolean
 }
 
 type RequestAction = 'SendSms' | 'SendBatchSms'
@@ -79,6 +80,7 @@ class SmsService {
 
     this.options = _.defaults(options, {
       debug: false,
+      mock: false,
     })
   }
 
@@ -165,6 +167,17 @@ class SmsService {
     const { endpoint, accessKeyID, apiVersion } = this.config
     const nonce = cryptoRandomString({ length: 32 })
     const timestamp = new Date().toISOString()
+
+    if (this.options.mock) {
+      if (this.options.debug) {
+        console.log('Skip sms api request due to mock option.', {
+          action,
+          params,
+        })
+      }
+
+      return
+    }
 
     const payload: RequestOptions = _.assign<
       Record<string, string>,
