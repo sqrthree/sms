@@ -7,7 +7,7 @@ const specialUrlEncode = function specialUrlEncode(str: string): string {
   return encodeURIComponent(str)
     .replace(/\+/g, '%20')
     .replace(/\*/g, '%2A')
-    .replace(/\%7E/g, '~')
+    .replace(/%7E/g, '~')
 }
 
 interface Config {
@@ -72,17 +72,20 @@ class SmsService {
     templateCode: string,
     phoneNumbers: string | string[]
   ): Promise<void>
+
   async sendSms(
     templateCode: string,
     phoneNumbers: string | string[],
     templateParams: SmsParams
   ): Promise<void>
+
   async sendSms(
     templateCode: string,
     phoneNumbers: string | string[],
     templateParams: SmsParams,
     options: Record<string, string>
   ): Promise<void>
+
   async sendSms(
     templateCode: string,
     phoneNumbers: string | string[],
@@ -108,11 +111,13 @@ class SmsService {
   }
 
   async sendBatchSms(templateCode: string, phoneNumbers: string[])
+
   async sendBatchSms(
     templateCode: string,
     phoneNumbers: string[],
     templateParams: SmsParams[]
   )
+
   async sendBatchSms(
     templateCode: string,
     phoneNumbers: string[],

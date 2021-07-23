@@ -8,7 +8,7 @@
     "prebuild": "npm run lint",
     "build": "tsc",
     "type-check": "tsc --noEmit",
-    "lint": "npm run type-check",
+    "lint": "npm run type-check && eslint --ext ts ./src",
     "prepublishOnly": "npm run build"
   },
   "publishConfig": {
@@ -34,7 +34,12 @@
     "lodash": "~4.17.21"
   },
   "devDependencies": {
+    "@sqrtthree/eslint-config-base": "~0.1.1",
+    "@sqrtthree/prettier-config": "~2.0.1",
     "@sqrtthree/tsconfig": "~1.0.0",
+    "@typescript-eslint/eslint-plugin": "~4.28.4",
+    "eslint": "~7.31.0",
+    "prettier": "~2.3.2",
     "typescript": "~4.3.5"
   }
 }
