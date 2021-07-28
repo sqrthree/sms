@@ -51,13 +51,13 @@ interface BaseResponse {
 type SmsParams = Record<string, string | number>
 
 interface SendSmsOptions {
-  SignName: string
-  SmsUpExtendCode: string
-  OutId: string
+  SignName?: string
+  SmsUpExtendCode?: string
+  OutId?: string
 }
 
 interface SendBatchSmsOptions {
-  SmsUpExtendCodeJson: string
+  SmsUpExtendCodeJson?: string
 }
 
 class SmsService {
@@ -100,14 +100,14 @@ class SmsService {
     templateCode: string,
     phoneNumbers: string | string[],
     templateParams: SmsParams,
-    options: Record<string, string>
+    options: SendSmsOptions
   ): Promise<void>
 
   async sendSms(
     templateCode: string,
     phoneNumbers: string | string[],
     templateParams?: SmsParams,
-    options?: Partial<SendSmsOptions>
+    options?: SendSmsOptions
   ): Promise<void> {
     const { signName } = this.config
     const phones =
@@ -281,11 +281,4 @@ class SmsService {
   }
 }
 
-export default function sms(
-  accessKeyID: string,
-  accessKeySecret: string,
-  signName: string,
-  options?: Partial<ServiceOptions>
-): SmsService {
-  return new SmsService(accessKeyID, accessKeySecret, signName, options)
-}
+export default SmsService

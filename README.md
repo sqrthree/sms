@@ -11,9 +11,9 @@ npm install @sqrtthree/sms
 ## Usage
 
 ```ts
-import smsService from '@sqrtthree/sms'
+import SmsService from '@sqrtthree/sms'
 
-const sms = smsService('id', 'key', 'sign name', {
+const sms = new SmsService('id', 'key', 'sign name', {
   debug: true,
   mock: true,
 })
